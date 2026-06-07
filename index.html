@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tony Koop — Design Portfolio</title>
+<meta name="description" content="Tony Koop — musical instrument design (Heifer Zephyr), maker tooling (MakerBench), and the WRFCoin climate-data protocol.">
+<style>
+:root{
+  --walnut:#3D2817; --cedar:#B98B47; --cream:#F8F4E9; --paper:#FFFFFF;
+  --lapis:#1E3A8A; --gold:#D4A017; --ink:#1F1A14; --muted:#6B5E4D;
+  --rule:#E0D6C5; --ok:#2E7D32; --warn:#C89220;
+  --serif:"Fraunces","Source Serif Pro",Georgia,serif;
+  --ui:"Inter","Source Sans Pro","Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono",Menlo,Consolas,monospace;
+  --italic-serif:"Cormorant Garamond","EB Garamond",Georgia,serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--cream);color:var(--ink);
+  font-family:var(--ui);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--lapis);text-decoration:none}
+a:hover{text-decoration:underline}
+code{font-family:var(--mono);font-size:0.88em;background:#FFFCF5;padding:1px 5px;border-radius:3px;border:1px solid var(--rule)}
+
+.app-bar{position:sticky;top:0;z-index:30;height:60px;
+  background:var(--walnut);color:var(--cream);
+  border-bottom:3px solid var(--gold);
+  display:flex;align-items:center;gap:24px;padding:0 26px}
+.wordmark em{font-family:var(--italic-serif);font-style:italic;
+  font-size:24px;color:var(--gold);letter-spacing:0.01em}
+.tagline{font-family:var(--serif);font-size:15px;color:var(--cream);
+  border-left:1px solid rgba(248,244,233,0.3);padding-left:14px}
+.app-bar nav{margin-left:auto;display:flex;gap:14px;align-items:center}
+.app-bar nav a{color:rgba(248,244,233,0.85);font-size:12px;letter-spacing:0.04em;
+  text-transform:uppercase;border:1px solid rgba(248,244,233,0.25);
+  border-radius:3px;padding:6px 10px}
+.app-bar nav a:hover{color:var(--gold);border-color:var(--gold);text-decoration:none}
+
+.wrap{max-width:1180px;margin:0 auto;padding:36px 28px 80px}
+.hero{margin-bottom:34px}
+.hero h1{font-family:var(--serif);font-weight:600;font-size:42px;color:var(--walnut);
+  margin:0 0 8px;letter-spacing:-0.01em;line-height:1.1}
+.hero h1 .eyebrow{display:block;font-family:var(--ui);font-weight:500;
+  font-size:11px;color:var(--lapis);text-transform:uppercase;
+  letter-spacing:0.18em;margin-bottom:8px}
+.hero p{color:var(--muted);font-size:16px;max-width:760px;font-family:var(--serif);line-height:1.6}
+
+.section{margin-bottom:42px}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;
+  margin-bottom:14px;padding-bottom:6px;border-bottom:1px solid var(--rule);flex-wrap:wrap;gap:8px}
+.section-head h2{font-family:var(--serif);font-weight:600;font-size:22px;color:var(--walnut);margin:0}
+.section-head .label{font-family:var(--ui);font-size:11px;color:var(--lapis);
+  text-transform:uppercase;letter-spacing:0.14em}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.grid.tight{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.tile{background:var(--paper);border:1px solid var(--rule);border-radius:6px;
+  padding:18px 20px 16px;display:flex;flex-direction:column;gap:10px;color:var(--ink);
+  transition:transform 100ms,box-shadow 100ms,border-color 100ms;min-height:150px}
+.tile:hover{transform:translateY(-2px);box-shadow:0 6px 14px rgba(31,26,20,0.09);
+  border-color:var(--cedar);text-decoration:none}
+.tile.primary{border-left:4px solid var(--gold)}
+.tile.secondary{border-left:4px solid var(--lapis)}
+.tile.flat{cursor:default}
+.tile.flat:hover{transform:none;box-shadow:none;border-color:var(--rule)}
+.tile-head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.eyebrow{font-family:var(--ui);font-size:10px;color:var(--lapis);
+  text-transform:uppercase;letter-spacing:0.14em}
+.tile h3{font-family:var(--serif);font-size:20px;color:var(--walnut);
+  margin:2px 0 4px;font-weight:600;line-height:1.25}
+.tile p{color:var(--muted);font-size:13px;margin:0;line-height:1.45}
+.tile .meta{display:flex;gap:5px;flex-wrap:wrap;margin-top:auto}
+.pill{display:inline-flex;align-items:center;gap:5px;background:var(--cream);
+  border:1px solid var(--rule);border-radius:11px;padding:2px 9px;font-size:11px}
+.pill.mono{font-family:var(--mono)}
+.pill.gold{background:var(--gold);color:var(--walnut);border-color:var(--gold)}
+.pill.lapis{background:var(--lapis);color:var(--cream);border-color:var(--lapis)}
+.pill.ok{background:#E8F1E8;color:var(--ok);border-color:#BcdCbc}
+.pill.soon{background:#FBF1DA;color:var(--warn);border-color:#EAD9AE}
+
+.inst{display:block;background:var(--paper);border:1px solid var(--rule);border-radius:6px;
+  padding:13px 15px;color:var(--ink);transition:transform 100ms,border-color 100ms,box-shadow 100ms}
+.inst:hover{transform:translateY(-2px);border-color:var(--cedar);
+  box-shadow:0 5px 12px rgba(31,26,20,0.08);text-decoration:none}
+.inst .fam{font-family:var(--mono);font-size:10px;color:var(--cedar);text-transform:uppercase;letter-spacing:0.1em}
+.inst h4{font-family:var(--serif);font-size:17px;color:var(--walnut);margin:3px 0 0;font-weight:600}
+
+footer{margin-top:60px;padding-top:18px;border-top:1px solid var(--rule);
+  color:var(--muted);font-size:12px;font-family:var(--mono);line-height:1.6}
+footer a{color:var(--lapis)}
+</style>
+</head>
+<body>
+<header class="app-bar">
+  <div class="brand">
+    <div class="wordmark"><em>Tony Koop</em></div>
+    <div class="tagline">Design Portfolio</div>
+  </div>
+  <nav>
+    <a href="./library.html">Instruments</a>
+    <a href="https://github.com/tonykoop/makerbench-hwe">MakerBench</a>
+    <a href="https://github.com/tonykoop">GitHub</a>
+  </nav>
+</header>
+
+<div class="wrap">
+  <div class="hero">
+    <h1><span class="eyebrow">Instruments · Tools · Protocols</span>Designing things that resonate</h1>
+    <p>I design and build — musical instruments under the <em>Heifer Zephyr</em> brand, open maker tooling, and a decentralized climate-data protocol. Each project ships with real engineering: CAD, acoustic models, build packets, and documentation. Browse the work below.</p>
+  </div>
+
+  <section class="section">
+    <div class="section-head">
+      <h2>Heifer Zephyr · Musical Instrument Design</h2>
+      <span class="label">150+ instruments · CAD · acoustic modeling · build packets</span>
+    </div>
+    <div class="grid">
+      <a class="tile primary" href="./library.html">
+        <div class="tile-head"><span class="eyebrow">Full Catalog</span><span class="pill gold">Library</span></div>
+        <h3>Studio Explorers Library</h3>
+        <p>Card view across the whole instrument portfolio — filter by family, status, acoustic model, CAD, and explorer readiness. Each card opens that instrument's own design site.</p>
+        <div class="meta"><span class="pill mono">151 instruments</span><span class="pill mono">5 families</span></div>
+      </a>
+      <div class="tile secondary flat">
+        <div class="tile-head"><span class="eyebrow">What's inside an explorer</span></div>
+        <h3>Per-instrument design sites</h3>
+        <p>Every instrument has its own page: an interactive Wolfram acoustic model, concept renders, a live 3D model, and the full downloadable build packet (design, BOM, cut list, validation).</p>
+        <div class="meta"><span class="pill mono">interactive</span><span class="pill mono">downloadable</span></div>
+      </div>
+    </div>
+
+    <div style="margin:18px 0 6px"><span class="eyebrow">Featured — fully built explorers</span></div>
+    <div class="grid tight">
+      <a class="inst" href="https://tonykoop.github.io/kora/"><span class="fam">Strings</span><h4>Kora</h4></a>
+      <a class="inst" href="https://tonykoop.github.io/ngoni/"><span class="fam">Strings</span><h4>Ngoni</h4></a>
+      <a class="inst" href="https://tonykoop.github.io/pipa/"><span class="fam">Strings</span><h4>Pipa</h4></a>
+      <a class="inst" href="https://tonykoop.github.io/marimba/"><span class="fam">Idiophones</span><h4>Marimba</h4></a>
+      <a class="inst" href="https://tonykoop.github.io/duduk/"><span class="fam">Woodwind</span><h4>Duduk</h4></a>
+      <a class="inst" href="https://tonykoop.github.io/gemshorn/"><span class="fam">Woodwind</span><h4>Gemshorn</h4></a>
+      <a class="inst" href="https://tonykoop.github.io/xiao/"><span class="fam">Woodwind</span><h4>Xiao</h4></a>
+      <a class="inst" href="https://tonykoop.github.io/siku-zampona/"><span class="fam">Woodwind</span><h4>Siku &amp; Zampoña</h4></a>
+      <a class="inst" href="https://tonykoop.github.io/kaval-alghosazi-flutes/"><span class="fam">Woodwind</span><h4>Kaval &amp; Alghosazi</h4></a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2>MakerBench · Maker Tooling</h2>
+      <span class="label">open-source harness for maker workflows</span>
+    </div>
+    <div class="grid">
+      <a class="tile primary" href="https://github.com/tonykoop/makerbench-hwe">
+        <div class="tile-head"><span class="eyebrow">New · Open Source</span><span class="pill ok">Live</span></div>
+        <h3>MakerBench-HWE</h3>
+        <p>The hardware-engineering harness behind the instrument design pipeline — oracles, fixtures, and evaluation tooling that keep build packets honest. Public on GitHub.</p>
+        <div class="meta"><span class="pill mono">makerbench-hwe</span><span class="pill mono">harness</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2>WRFCoin · Decentralized Climate-Data Protocol</h2>
+      <span class="label">whitepaper · consensus · tokenomics · Rust reference impl</span>
+    </div>
+    <div class="grid">
+      <div class="tile primary flat">
+        <div class="tile-head"><span class="eyebrow">Protocol</span><span class="pill soon">Testnet soon</span></div>
+        <h3>WRFCoin</h3>
+        <p>A decentralized protocol for verifiable climate and weather data. Whitepaper-complete and heading toward a public testnet — the goal is to put the testnet in the general public's hands.</p>
+        <div class="meta"><span class="pill mono">pre-testnet</span><span class="pill mono">Rust</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Tony Koop — instrument design (Heifer Zephyr), maker tooling (MakerBench), and the WRFCoin protocol.
+    Source on <a href="https://github.com/tonykoop">github.com/tonykoop</a>.</p>
+  </footer>
+</div>
+</body>
+</html>
